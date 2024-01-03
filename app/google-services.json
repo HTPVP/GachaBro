@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1045794004633",
+    "project_id": "gachabro-users",
+    "storage_bucket": "gachabro-users.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045794004633:android:17befe9e8ea6fc29726208",
+        "android_client_info": {
+          "package_name": "com.example.gachabro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045794004633-b835565cqsdgidcrabhrovbou5svbhsl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTEbzWrrTNUvFHK4icZPXlXZM_v51rpeI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045794004633-b835565cqsdgidcrabhrovbou5svbhsl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

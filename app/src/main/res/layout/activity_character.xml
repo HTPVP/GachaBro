@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_ish"
+    android:fitsSystemWindows="true"
+    tools:context=".Calculator">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/TopNav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue_nav"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:menu="@menu/top_nav"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="GachaBro"
+            app:titleTextColor="@color/white"/>
+        <TextView
+            android:id="@+id/TopTitle"
+            android:text="Currently Own Characters"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:layout_below="@id/TopNav"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/TopTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/active_char_view"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/add_char"
+            android:layout_below="@id/active_char_view"
+            android:text="Add Character"
+            android:textAllCaps="false"
+            android:layout_width="wrap_content"
+            android:background="@drawable/green_button"
+            android:layout_marginTop="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/blue_nav"
+            app:itemIconTint="@color/color_state"
+            app:itemTextColor="@color/white"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_nav" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="@color/blue_ish"
+        app:headerLayout="@layout/header_menu"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/main_menu" />
+</androidx.drawerlayout.widget.DrawerLayout>

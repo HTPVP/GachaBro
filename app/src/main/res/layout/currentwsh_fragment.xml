@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/CharSplash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"/>
+
+    <TextView
+        android:id="@+id/Warp_tracker"
+        android:text="Wish tracker"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="15dp"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_blue_box_transparent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Wish: 200"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/white"
+        android:background="@drawable/round_blue_box_transparent"
+        android:layout_alignParentEnd="true"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/to_Status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:textColor="@color/white"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/green_button"
+        android:layout_alignParentEnd="true"
+        android:textAllCaps="false"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

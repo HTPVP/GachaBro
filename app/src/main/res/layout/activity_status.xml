@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_ish"
+    android:fitsSystemWindows="true"
+    tools:context=".Status">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/TopNav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue_nav"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:menu="@menu/top_nav"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="GachaBro"
+            app:titleTextColor="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/character_wish_title"
+            android:layout_below="@id/TopNav"
+            android:layout_marginTop="20dp"
+            android:text="Character Banner Wishes"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/character_wish"
+            android:layout_below="@id/character_wish_title"
+            android:text="100"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold"/>
+
+        <View
+            android:id="@+id/centerShim"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:visibility="invisible"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/character_five_star_title"
+            android:gravity="center"
+            android:text="5* obtained"
+            android:layout_below="@id/character_wish"
+            android:layout_toLeftOf="@id/centerShim"
+            android:textSize="20dp"
+            android:textColor="#ffaa4a"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/character_five_star"
+            android:gravity="center"
+            android:text="5 (5%)"
+            android:layout_below="@id/character_five_star_title"
+            android:layout_toLeftOf="@id/centerShim"
+            android:textSize="30dp"
+            android:textColor="#ffaa4a"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/character_four_star_title"
+            android:gravity="center"
+            android:text="5* obtained"
+            android:layout_below="@id/character_wish"
+            android:layout_toRightOf="@id/centerShim"
+            android:textSize="20dp"
+            android:textColor="#9174a9"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/character_four_star"
+            android:gravity="center"
+            android:text="12 (12%)"
+            android:layout_below="@id/character_four_star_title"
+            android:layout_toRightOf="@id/centerShim"
+            android:textSize="30dp"
+            android:textColor="#9174a9"
+            android:textStyle="bold"/>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weapon_wish_title"
+            android:layout_below="@id/character_five_star"
+            android:layout_marginTop="50dp"
+            android:text="Weapon Banner Wishes"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weapon_wish"
+            android:layout_below="@id/weapon_wish_title"
+            android:text="100"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weapon_five_star_title"
+            android:gravity="center"
+            android:text="5* obtained"
+            android:layout_below="@id/weapon_wish"
+            android:layout_toLeftOf="@id/centerShim"
+            android:textSize="20dp"
+            android:textColor="#ffaa4a"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weapon_five_star"
+            android:gravity="center"
+            android:text="5 (5%)"
+            android:layout_below="@id/weapon_five_star_title"
+            android:layout_toLeftOf="@id/centerShim"
+            android:textSize="30dp"
+            android:textColor="#ffaa4a"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weapon_four_star_title"
+            android:gravity="center"
+            android:text="5* obtained"
+            android:layout_below="@id/weapon_wish"
+            android:layout_toRightOf="@id/centerShim"
+            android:textSize="20dp"
+            android:textColor="#9174a9"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weapon_four_star"
+            android:gravity="center"
+            android:text="12 (12%)"
+            android:layout_below="@id/weapon_four_star_title"
+            android:layout_toRightOf="@id/centerShim"
+            android:textSize="30dp"
+            android:textColor="#9174a9"
+            android:textStyle="bold"/>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/standard_wish_title"
+            android:layout_below="@id/weapon_five_star"
+            android:layout_marginTop="50dp"
+            android:text="Standard Banner Wishes"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/standard_wish"
+            android:layout_below="@id/standard_wish_title"
+            android:text="100"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/standard_five_star_title"
+            android:gravity="center"
+            android:text="5* obtained"
+            android:layout_below="@id/standard_wish"
+            android:layout_toLeftOf="@id/centerShim"
+            android:textSize="20dp"
+            android:textColor="#ffaa4a"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/standard_five_star"
+            android:gravity="center"
+            android:text="5 (5%)"
+            android:layout_below="@id/standard_five_star_title"
+            android:layout_toLeftOf="@id/centerShim"
+            android:textSize="30dp"
+            android:textColor="#ffaa4a"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/standard_four_star_title"
+            android:gravity="center"
+            android:text="5* obtained"
+            android:layout_below="@id/standard_wish"
+            android:layout_toRightOf="@id/centerShim"
+            android:textSize="20dp"
+            android:textColor="#9174a9"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/standard_four_star"
+            android:gravity="center"
+            android:text="12 (12%)"
+            android:layout_below="@id/standard_four_star_title"
+            android:layout_toRightOf="@id/centerShim"
+            android:textSize="30sp"
+            android:textColor="#9174a9"
+            android:textStyle="bold"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/green_button"
+            android:layout_centerHorizontal="true"
+            android:text="Update Data"
+            android:layout_below="@id/standard_four_star"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:onClick="buttonClickFunction"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:background="@color/blue_nav"
+            app:itemIconTint="@color/color_state"
+            app:itemTextColor="@color/white"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_nav" />
+
+    </RelativeLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="@color/blue_ish"
+        app:headerLayout="@layout/header_menu"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/main_menu" />
+</androidx.drawerlayout.widget.DrawerLayout>
