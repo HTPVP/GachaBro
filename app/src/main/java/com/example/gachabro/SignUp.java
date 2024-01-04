@@ -106,7 +106,7 @@ public class SignUp extends AppCompatActivity {
                     return;
                 }
                 if(!isValidPassword(password)){
-                    Toast.makeText(SignUp.this, "Create Password Atleast 6 Characters long", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUp.this, "Password Must Be atleast 6 Characters long, have Capital, special Characters, numbers", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                     return;
                 }
