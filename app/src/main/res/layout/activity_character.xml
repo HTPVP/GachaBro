@@ -41,16 +41,7 @@
             android:layout_height="match_parent"
             android:id="@+id/active_char_view"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/add_char"
-            android:layout_below="@id/active_char_view"
-            android:text="Add Character"
-            android:textAllCaps="false"
-            android:layout_width="wrap_content"
-            android:background="@drawable/green_button"
-            android:layout_marginTop="40dp"
-            android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"/>
+
     </RelativeLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
