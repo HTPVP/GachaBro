@@ -103,13 +103,14 @@
             />
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/Login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="4"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/bordered_blue_button"
+            android:textAllCaps="false"
             android:onClick="Login"
             android:text="Login"
             android:textColor="@color/white"/>

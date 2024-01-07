@@ -99,7 +99,7 @@
         android:layout_marginTop="15dp"
         android:visibility="gone"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/Create_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -112,7 +112,8 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="127dp"
         android:layout_weight="1"
-        android:background="@drawable/rounded_button"
+        android:textAllCaps="false"
+        android:background="@drawable/bordered_blue_button"
         android:onClick="createAccount"
         android:text="Create Account"
         android:textColor="@color/white" />
