@@ -34,13 +34,57 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+<!--        <LinearLayout-->
+<!--            android:id="@+id/AddButton"-->
+<!--            android:layout_below="@id/TopTitle"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <androidx.appcompat.widget.AppCompatButton-->
+<!--                android:id="@+id/add_cur_char"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_marginRight="15dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Add Character"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:background="@drawable/bordered_blue_button"-->
+<!--                android:padding="7dp"-->
+<!--                android:layout_gravity="center"/>-->
+<!--            <androidx.appcompat.widget.AppCompatButton-->
+<!--                android:id="@+id/del_cur_char"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Delete Character"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:padding="7dp"-->
+<!--                android:background="@drawable/bordered_blue_button"-->
+<!--                android:layout_gravity="center"/>-->
+
+<!--        </LinearLayout>-->
+
+<!--        <SearchView-->
+<!--            android:id="@+id/add_cur_char_search"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/AddButton"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            android:layout_marginBottom="15dp"-->
+<!--            android:visibility="gone"-->
+<!--            android:background="@drawable/bordered_blue_button" />-->
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_marginTop="15dp"
+            android:layout_marginBottom="53.5dp"
             android:layout_below="@id/TopTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/active_char_view"/>
-
 
     </RelativeLayout>
 

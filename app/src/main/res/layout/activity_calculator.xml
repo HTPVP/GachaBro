@@ -9,66 +9,81 @@
     android:fitsSystemWindows="true"
     tools:context=".Calculator">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/TopNav"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/blue_nav"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:menu="@menu/top_nav"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="GachaBro"
-            app:titleTextColor="@color/white" />
+            android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/buttons"
-            android:layout_below="@id/TopNav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/add_Char"
-                android:text="Add Character"
-
-                android:padding="5dp"
-                android:textColor="@color/white"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/TopNav"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bordered_blue_button"/>
+                android:background="@color/blue_nav"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:menu="@menu/top_nav"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title="GachaBro"
+                app:titleTextColor="@color/white" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/add_weapon"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
-                android:padding="5dp"
-                android:text="Add Weapon"
-                android:textColor="@color/white"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/buttons"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bordered_blue_button"/>
-        </LinearLayout>
+                android:layout_below="@id/TopNav"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Weapon_Char"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/buttons"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/add_Char"
+                    android:layout_width="wrap_content"
 
-    </RelativeLayout>
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bordered_blue_button"
+                    android:padding="5dp"
+                    android:text="Add Character"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/add_weapon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/bordered_blue_button"
+                    android:padding="5dp"
+                    android:text="Add Weapon"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            
+            <SearchView
+                android:id="@+id/search_bar_calcu_char"
+                android:layout_below="@id/buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bordered_blue_button"
+                android:visibility="gone"/>
+            <SearchView
+                android:id="@+id/search_bar_calcu_wpn"
+                android:layout_below="@id/buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bordered_blue_button"
+                android:visibility="gone"/>
+
+            <FrameLayout
+                android:layout_below="@id/buttons"
+                android:id="@+id/fragment_for_calc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </RelativeLayout>
+    </ScrollView>
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

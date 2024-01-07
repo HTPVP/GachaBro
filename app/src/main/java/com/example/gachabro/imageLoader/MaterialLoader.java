@@ -32,7 +32,7 @@ public class MaterialLoader {
 
     public void listFiles() {
         // replace listRef with your reference
-        StorageReference listRef = storageRef.child("/dataset/api-mistress/assets/images/weapons");
+        StorageReference listRef = storageRef.child("/dataset/api-mistress/assets/images/materials");
         listRef.listAll()
                 .addOnSuccessListener(new OnSuccessListener<ListResult>() {
                     @Override
@@ -42,16 +42,14 @@ public class MaterialLoader {
                             prefix.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
                                 @Override
                                 public void onSuccess(ListResult listResult) {
-                                    for(StorageReference item : listResult.getItems()){
-                                        if(item.getName().equals("icon")){
-                                            String prefix_name = prefix.getName();
-                                            File dir = new File(context.getFilesDir(), "Weapon_Prefixes");
-                                            if (!dir.exists()) {
-                                                boolean wasSuccessful = dir.mkdirs();
-                                                if (!wasSuccessful) {
-                                                    Log.e("CreateDir", "Failed to create directory");
-                                                    return;
-                                                }
+                                    for (StorageReference item : listResult.getItems()) {
+                                        String prefix_name = prefix.getName();
+                                        File dir = new File(context.getFilesDir(), prefix_name);
+                                        if (!dir.exists()) {
+                                            boolean wasSuccessful = dir.mkdirs();
+                                            if (!wasSuccessful) {
+                                                Log.e("CreateDir", "Failed to create directory");
+                                                return;
                                             }
 
                                             File file = new File(dir, prefix_name + ".txt");
@@ -87,18 +85,45 @@ public class MaterialLoader {
                     }
                 });
     }
+    public void listAndDownloadFilesRecursively(StorageReference ref) {
+        ref.listAll()
+                .addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                    @Override
+                    public void onSuccess(ListResult listResult) {
+                        // Iterate over the files
+                        for (StorageReference fileRef : listResult.getItems()) {
+                            // Download the file
+                            downloadFile(ref.getName(), fileRef, fileRef.getName());
+                        }
 
-    public void downloadFile(String prefix,StorageReference fileRef,String Filename){
+                        // Iterate over the subdirectories
+                        for (StorageReference prefix : listResult.getPrefixes()) {
+                            // Recursive call
+                            listAndDownloadFilesRecursively(prefix);
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Handle any errors
+                        Log.e("FolderError", "onFailure: Failed to list files", e);
+                    }
+                });
+    }
 
-        File directory = new File(context.getFilesDir(), "weapon_images");
-        if (!directory.exists()){
+    public void downloadFile(String prefix, StorageReference fileRef, String Filename) {
+
+        File directory = new File(context.getFilesDir(), prefix);
+        if (!directory.exists()) {
             boolean wasSuccessful = directory.mkdirs();
             if (!wasSuccessful) {
                 Log.e("DownloadFile", "Failed to create directory");
                 return;
             }
         }
-        File localFile = new File(directory,prefix +  "_" +  Filename + ".png");
+//        File localFile = new File(directory, prefix + "_" + Filename + ".png");
+        File localFile = new File(directory, Filename + ".png");
 
         if (localFile.exists()) {
             Log.d("DownloadFile", "File already exists: " + localFile.getAbsolutePath());

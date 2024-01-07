@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Filter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +21,8 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Char_active_adapter extends RecyclerView.Adapter<MyViewHolder> {
@@ -43,11 +46,12 @@ public class Char_active_adapter extends RecyclerView.Adapter<MyViewHolder> {
 
         Character_items item = items.get(position);
         String imagePath = item.getImagePath();
+        Log.d("Debug1", "Image Path: " + imagePath);
+        File imageFile = new File(context.getFilesDir(), "images/" + imagePath);
+        Uri imageUri = Uri.fromFile(imageFile);
 
-        Bitmap bitmap = loadImageFromFile(imagePath);
-        if (bitmap != null) {
-            holder.imageView.setImageBitmap(bitmap);
-        }
+        Picasso.get().load(imageUri)
+                .into(holder.imageView);
 
         String imageName = item.getPrefix();
         if(imageName != null){
@@ -55,20 +59,9 @@ public class Char_active_adapter extends RecyclerView.Adapter<MyViewHolder> {
         }
     }
 
-
     @Override
     public int getItemCount() {
         return items.size();
     }
 
-    private Bitmap loadImageFromFile(String filename) {
-        try {
-            File directory = new File(context.getFilesDir(), "images");
-            File imageFile = new File(directory, filename);
-            return BitmapFactory.decodeStream(new FileInputStream(imageFile));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 }

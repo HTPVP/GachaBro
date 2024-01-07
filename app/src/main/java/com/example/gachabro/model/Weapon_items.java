@@ -1,11 +1,11 @@
 package com.example.gachabro.model;
 
-public class Character_items {
+public class Weapon_items {
 
     private String imagePath;
     private String prefix;
 
-    public Character_items(String imagePath, String prefix) {
+    public Weapon_items(String imagePath, String prefix) {
         this.prefix = prefix;
         this.imagePath = imagePath;
     }

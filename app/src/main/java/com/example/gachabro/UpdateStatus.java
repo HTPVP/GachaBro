@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class UpdateStatus extends AppCompatActivity implements View.OnClickListener{
@@ -36,6 +37,7 @@ public class UpdateStatus extends AppCompatActivity implements View.OnClickListe
             edit_weapon_total, edit_weapon_five, edit_weapon_four,
             edit_standard_total, edit_standard_five, edit_standard_four;
     FirebaseFirestore fstore;
+    FirebaseAuth auth;
 
     Button button;
     private final Handler handler = new Handler();
@@ -85,9 +87,6 @@ public class UpdateStatus extends AppCompatActivity implements View.OnClickListe
                     case R.id.MyProfile:
                         intent = new Intent(UpdateStatus.this, Profile.class);
                         break;
-                    case R.id.Settings:
-                        intent = new Intent(UpdateStatus.this, Settings.class);
-                        break;
                     case R.id.Logout:
                         FirebaseAuth.getInstance().signOut();
                         intent = new Intent(getApplicationContext(), Login.class);
@@ -130,6 +129,7 @@ public class UpdateStatus extends AppCompatActivity implements View.OnClickListe
     }
 
     public void updateData() {
+        FirebaseUser user = auth.getCurrentUser();
         String total_char = edit_character_total.getText().toString();
         String five_char = edit_character_five.getText().toString();
         String four_char = edit_character_four.getText().toString();
@@ -143,7 +143,8 @@ public class UpdateStatus extends AppCompatActivity implements View.OnClickListe
         String four_standard = edit_standard_four.getText().toString();
 
 
-        fstore.collection("wishes").document("KlnE6VjNCNVKE3W0TKjl")
+        assert user != null;
+        fstore.collection("wishes").document(user.getUid())
                 .update(
                         "total_char", total_char,
                         "five_char", five_char,
@@ -205,10 +206,8 @@ public class UpdateStatus extends AppCompatActivity implements View.OnClickListe
     }
 
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.button_update:
-                updateData();
-                break;
+        if (v.getId() == R.id.button_update) {
+            updateData();
         }
     }
 }

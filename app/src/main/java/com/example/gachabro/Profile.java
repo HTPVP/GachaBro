@@ -81,9 +81,6 @@ public class Profile extends AppCompatActivity{
                     case R.id.MyProfile:
                         intent = new Intent(Profile.this, Profile.class);
                         break;
-                    case R.id.Settings:
-                        intent = new Intent(Profile.this, Settings.class);
-                        break;
                     case R.id.Logout:
                         FirebaseAuth.getInstance().signOut();
                         intent = new Intent(getApplicationContext(), Login.class);

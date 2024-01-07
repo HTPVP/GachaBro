@@ -108,9 +108,6 @@ public class Status extends AppCompatActivity {
                     case R.id.MyProfile:
                         intent = new Intent(Status.this, Profile.class);
                         break;
-                    case R.id.Settings:
-                        intent = new Intent(Status.this, Settings.class);
-                        break;
                     case R.id.Logout:
                         FirebaseAuth.getInstance().signOut();
                         intent = new Intent(getApplicationContext(), Login.class);

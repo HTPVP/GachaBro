@@ -28,7 +28,9 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gachabro.Adapters.Char_active_adapter;
 import com.example.gachabro.model.Character_items;
@@ -62,7 +64,11 @@ public class Character extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Toolbar toolbar;
     NavigationView navigationView;
+    Button addChar, delChar;
+    SearchView searchView;
     View headerview;
+    FirebaseAuth auth;
+    FirebaseFirestore fstore;
     private final Handler handler = new Handler();
     private Dialog progressDialog;
 
@@ -91,15 +97,10 @@ public class Character extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new GridSpacing(spanCount, spacing, true));
 
-
         db = FirebaseFirestore.getInstance();
-
         items = new ArrayList<>();
-
         adapter = new Char_active_adapter(Character.this, items);
-
         recyclerView.setAdapter(adapter);
-
         EventChangeListener();
 
 
@@ -110,13 +111,42 @@ public class Character extends AppCompatActivity {
         toolbar = findViewById(R.id.TopNav);
         usernameTextview = headerview.findViewById(R.id.Username);
         drawerLayout = findViewById(R.id.drawer_layout);
+//        addChar = findViewById(R.id.add_cur_char);
+//        delChar = findViewById(R.id.del_cur_char);
+//        searchView = findViewById(R.id.add_cur_char_search);
         Intent LoginPage = new Intent(getApplicationContext(), Login.class);
+
+//        searchView.setActivated(true);
+//        searchView.setQueryHint("Type your keyword here");
+//        searchView.onActionViewExpanded();
+//        searchView.setIconified(false);
+//        searchView.clearFocus();
+
 
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
         drawerLayout.addDrawerListener(toggle);
         toggle.setDrawerIndicatorEnabled(false);
         toggle.syncState();
+
+//        addChar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                searchView.setVisibility(View.VISIBLE);
+//                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//                    @Override
+//                    public boolean onQueryTextSubmit(String query) {
+//                        return false;
+//                    }
+//
+//                    @Override
+//                    public boolean onQueryTextChange(String newText) {
+//                        filterList(newText);
+//                        return true;
+//                    }
+//                });
+//            }
+//        });
 
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -126,9 +156,6 @@ public class Character extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.MyProfile:
                         intent = new Intent(Character.this, Profile.class);
-                        break;
-                    case R.id.Settings:
-                        intent = new Intent(Character.this, Settings.class);
                         break;
                     case R.id.Logout:
                         FirebaseAuth.getInstance().signOut();
@@ -166,8 +193,6 @@ public class Character extends AppCompatActivity {
                 return true;
             }
         });
-
-
     }
 
     private void EventChangeListener(){
@@ -248,4 +273,36 @@ public class Character extends AppCompatActivity {
             }
         }, 500); // Delay in milliseconds
     }
+
+    private void filterList(String newText) {
+        List<Character_items> filterList = new ArrayList<>();
+        for (Character_items item : items){
+            if(item.getPrefix().toLowerCase().contains(newText.toLowerCase())){
+                filterList.add(item);
+            }
+        }
+        if(filterList.isEmpty()){
+            Toast.makeText(this, "No data found", Toast.LENGTH_LONG).show();
+        }
+    }
+
+//    public void updateData(){
+//        FirebaseUser user = auth.getCurrentUser();
+//        String Character =
+//
+//        fstore.collection("character").document(user.getUid())
+//                .update(
+//                        "Image",
+//                        "Character", character
+//                )
+//
+//
+//
+//    }
+//    public void deleteData(){
+//        FirebaseUser user = auth.getCurrentUser();
+//        fstore.collection()
+//
+//    }
+
 }

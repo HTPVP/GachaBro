@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.Dialog;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,14 +26,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gachabro.Adapters.BannerPager_adapter;
 import com.example.gachabro.Adapters.search_bar_adapter;
 import com.example.gachabro.fragment.wish_fragment;
 import com.example.gachabro.imageLoader.CharImageLoader;
+import com.example.gachabro.imageLoader.MaterialLoader;
 import com.example.gachabro.imageLoader.WeaponImageLoader;
 import com.example.gachabro.model.Character_items;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -40,16 +42,10 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Home extends AppCompatActivity {
@@ -70,16 +66,17 @@ public class Home extends AppCompatActivity {
     private Fragment wishFragment = new wish_fragment();
     String username;
     Context context;
-    SearchView searchView;
+    SearchView searchView,search;
     Character chars;
     ViewPager viewPager;
-    search_bar_adapter adapter;
+    search_bar_adapter adapter_search;
     CharImageLoader charImageLoader = new CharImageLoader(this);
     WeaponImageLoader weaponImageLoader = new WeaponImageLoader(this);
+    MaterialLoader materialLoader = new MaterialLoader(this);
+
     private final Handler handler = new Handler(Looper.getMainLooper());
     private Dialog progressDialog;
-    private List<String> data = new ArrayList<>();
-
+    private final StorageReference storageRef = FirebaseStorage.getInstance().getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,24 +100,19 @@ public class Home extends AppCompatActivity {
         search_recycle = findViewById(R.id.search_bar_recycle);
         searchView = findViewById(R.id.Search_bar);
 
+
         //Image loader
         charImageLoader.listFiles();
         weaponImageLoader.listFiles();
+        StorageReference listRef = storageRef.child("/dataset/api-mistress/assets/images/materials");
+        materialLoader.listAndDownloadFilesRecursively(listRef);
+//        materialLoader.listFiles();
 
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
         drawerLayout.addDrawerListener(toggle);
         toggle.setDrawerIndicatorEnabled(false);
         toggle.syncState();
-
-        //RecycleView for searchbar
-
-        search_recycle.setLayoutManager(new LinearLayoutManager(this));
-        search_recycle.setHasFixedSize(true);
-
-        adapter = new search_bar_adapter(context,items, data);
-
-
 
         //Check User
         boolean checkboxState = getIntent().getBooleanExtra("CHECKBOX_STATE", true);
@@ -147,6 +139,37 @@ public class Home extends AppCompatActivity {
                         .add(R.id.frame_wish, wishFragment)
                         .commit();
 
+        //Search bar
+        searchView.setActivated(true);
+        searchView.setQueryHint("Type your keyword here");
+        searchView.onActionViewExpanded();
+        searchView.setIconified(false);
+        searchView.clearFocus();
+
+        items = new ArrayList<>();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // Perform search operation
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Update search results as the user types
+                filterList(newText);
+                return false;
+            }
+        });
+
+        //RecycleView for searchbar
+        search_recycle.setLayoutManager(new LinearLayoutManager(this));
+        search_recycle.setHasFixedSize(true);
+
+        adapter_search = new search_bar_adapter(context,items);
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             Intent intent;
 
@@ -155,9 +178,6 @@ public class Home extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.MyProfile:
                         intent = new Intent(Home.this, Profile.class);
-                        break;
-                    case R.id.Settings:
-                        intent = new Intent(Home.this, Settings.class);
                         break;
                     case R.id.Logout:
                         FirebaseAuth.getInstance().signOut();
@@ -204,6 +224,23 @@ public class Home extends AppCompatActivity {
         adapter.startAutoScroll();
 
     }
+    public void setFilterList(List<Character_items> filterList){
+        this.items = filterList;
+        adapter_search.notifyDataSetChanged();
+    }
+    private void filterList(String newText) {
+        List<Character_items> filterList = new ArrayList<>();
+        for (Character_items item : items){
+            if(item.getPrefix().toLowerCase().contains(newText.toLowerCase())){
+                filterList.add(item);
+            }
+        }
+        if(filterList.isEmpty()){
+            Toast.makeText(this, "No data found", Toast.LENGTH_LONG).show();
+        }
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -268,8 +305,8 @@ public class Home extends AppCompatActivity {
 //        // Now, 'data' contains all lines from all .txt files in the directory
 //    }
     private void initializeAdapter() {
-        adapter = new search_bar_adapter(context, items, data);
-        search_recycle.setAdapter(adapter);
+        adapter_search = new search_bar_adapter(context, items);
+        search_recycle.setAdapter(adapter_search);
     }
 }
 
