@@ -110,9 +110,9 @@ public class Profile extends AppCompatActivity{
                     case R.id.status:
                         intent = new Intent(Profile.this, Status.class);
                         break;
-                    case R.id.calculator:
-                        intent = new Intent(Profile.this, Calculator.class);
-                        break;
+//                    case R.id.calculator:
+//                        intent = new Intent(Profile.this, Calculator.class);
+//                        break;
                     default:
                         return false;
                 }

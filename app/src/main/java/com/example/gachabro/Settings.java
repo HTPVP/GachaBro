@@ -109,9 +109,9 @@ public class Settings extends AppCompatActivity{
                     case R.id.status:
                         intent = new Intent(Settings.this, Status.class);
                         break;
-                    case R.id.calculator:
-                        intent = new Intent(Settings.this, Calculator.class);
-                        break;
+//                    case R.id.calculator:
+//                        intent = new Intent(Settings.this, Calculator.class);
+//                        break;
                     default:
                         return false;
                 }

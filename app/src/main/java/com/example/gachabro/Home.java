@@ -199,9 +199,9 @@ public class Home extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.calculator:
-                        intent = new Intent(Home.this, Calculator.class);
-                        break;
+//                    case R.id.calculator:
+//                        intent = new Intent(Home.this, Calculator.class);
+//                        break;
                     case R.id.Character:
                         intent = new Intent(Home.this, Character.class);
                         break;

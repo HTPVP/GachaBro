@@ -179,9 +179,9 @@ public class Character extends AppCompatActivity {
                     case R.id.home:
                         intent = new Intent(Character.this, Home.class);
                         break;
-                    case R.id.calculator:
-                        intent = new Intent(Character.this, Calculator.class);
-                        break;
+//                    case R.id.calculator:
+//                        intent = new Intent(Character.this, Calculator.class);
+//                        break;
                     case R.id.status:
                         intent = new Intent(Character.this, Status.class);
                         break;

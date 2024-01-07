@@ -115,6 +115,9 @@ public class UpdateStatus extends AppCompatActivity implements View.OnClickListe
                     case R.id.status:
                         intent = new Intent(UpdateStatus.this, Status.class);
                         break;
+//                    case R.id.calculator:
+//                        intent = new Intent(Status.this, Calculator.class);
+//                        break;
                     default:
                         return false;
                 }

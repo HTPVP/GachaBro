@@ -133,9 +133,9 @@ public class Status extends AppCompatActivity {
                     case R.id.Character:
                         intent = new Intent(Status.this, Character.class);
                         break;
-                    case R.id.calculator:
-                        intent = new Intent(Status.this, Calculator.class);
-                        break;
+//                    case R.id.calculator:
+//                        intent = new Intent(Status.this, Calculator.class);
+//                        break;
                     default:
                         return false;
                 }
